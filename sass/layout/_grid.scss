@@ -6,11 +6,17 @@
   display: flex;
   gap: $gutter-horizontal;
 
+  @include respond(tab-port) {
+    flex-direction: column;
+    gap: $gutter-vertical-small;
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
   }
 }
-
 // [class^='col'] {
 //   // background-color: #6d8b74;
 //   flex-grow: 1;
@@ -56,4 +62,11 @@
   width: calc(
     3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * $gutter-horizontal
   );
+}
+
+[class^='col-'] {
+  @include respond(tab-port) {
+    width: 100% !important;
+    margin: 0 auto;
+  }
 }

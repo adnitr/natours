@@ -10,11 +10,29 @@
     right: 4.5rem;
     box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
     cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 3rem;
+      bottom: 3rem;
+    }
+
+    @include respond(phone) {
+      top: 2.5rem;
+      bottom: 2.5rem;
+    }
   }
 
   &__background {
     height: 6rem;
     width: 6rem;
+    @include respond(tab-port) {
+      top: 3.5rem;
+      bottom: 3.5rem;
+    }
+    @include respond(phone) {
+      top: 3rem;
+      bottom: 3rem;
+    }
     border-radius: 50%;
     position: fixed;
     top: 5rem;

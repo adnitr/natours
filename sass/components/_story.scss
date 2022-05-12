@@ -8,9 +8,22 @@
   padding-left: 6.8rem;
   font-size: 1.5rem;
   transform: skewX(-12deg);
+  @include respond(tab-port) {
+    transform: skewX(0deg);
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 3rem;
+    padding-left: 5rem;
+  }
 
   & > * {
     transform: skewX(12deg);
+
+    @include respond(tab-port) {
+      transform: skewX(0deg);
+    }
   }
 
   &__shape {
@@ -22,6 +35,13 @@
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-2rem) skewX(12deg);
+    @include respond(tab-port) {
+      transform: translateX(-3rem) skewX(12deg);
+    }
+    @include respond(tab-port) {
+      transform: translateX(-3rem) skewX(0deg);
+    }
+
     position: relative;
     backface-visibility: hidden;
     overflow: hidden;
