@@ -255,6 +255,7 @@ body {
     left: 0;
     top: 0;
     width: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 3px;
     overflow: hidden;
@@ -540,6 +541,11 @@ body {
   opacity: 0;
   transition: all 0.3s;
   background-color: rgba(0, 0, 0, 0.8); }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup:target {
     visibility: visible;
     opacity: 1; }
@@ -645,14 +651,18 @@ body {
     height: 15rem;
     width: 15rem;
     float: left;
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
     transform: translateX(-2rem) skewX(12deg);
+    border-radius: 50%;
     position: relative;
     backface-visibility: hidden;
     overflow: hidden; }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      .story__shape {
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        border-radius: none; } }
     @media (max-width: 56.25em) {
       .story__shape {
         transform: translateX(-3rem) skewX(12deg); } }
@@ -761,13 +771,13 @@ body {
   width: calc((100% - 3 * 6rem) / 4); }
 
 .col-2-of-3 {
-  width: calc( 2 * ((100% - 2 * 6rem) / 3) + $gutter-horizontal); }
+  width: calc( 2 * ((100% - 2 * 6rem) / 3) + 6rem); }
 
 .col-2-of-4 {
-  width: calc( 2 * ((100% - 3 * 6rem) / 4) + $gutter-horizontal); }
+  width: calc( 2 * ((100% - 3 * 6rem) / 4) + 6rem); }
 
 .col-3-of-4 {
-  width: calc( 3 * ((100% - 3 * 6rem) / 4) + 2 * $gutter-horizontal); }
+  width: calc( 3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
 
 @media (max-width: 56.25em) {
   [class^='col-'] {
@@ -775,13 +785,21 @@ body {
     margin: 0 auto; } }
 
 .header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  height: 85vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-small.jpg);
   background-size: cover;
   background-position: top;
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 75vh, 100% 0);
   clip-path: polygon(0 0, 0 100%, 100% 75vh, 100% 0);
   position: relative; }
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 0 100%, 100% 75vh, 100% 0);
+      clip-path: polygon(0 0, 0 100%, 100% 75vh, 100% 0);
+      height: 95vh; } }
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
+    .header {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg); } }
   @media (max-width: 56.25em) {
     .header {
       -webkit-clip-path: polygon(0 0, 0 100%, 100% 85vh, 100% 0);
